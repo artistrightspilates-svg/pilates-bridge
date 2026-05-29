@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スタジオ掲載プラン | Pilates Bridge</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B89A7A;
+      --gold-light: #E8D5BC;
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --text-faint: #aaaaaa;
+      --border: rgba(0,0,0,0.12);
+      --border-mid: rgba(0,0,0,0.2);
+      --bg: #ffffff;
+      --bg-soft: #f8f6f3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      border-bottom: 0.5px solid var(--border);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+    }
+    .logo { font-size: 13px; letter-spacing: 0.18em; font-weight: 400; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .page-hero {
+      background: var(--bg-soft);
+      border-bottom: 0.5px solid var(--border);
+      padding: 64px 48px;
+      text-align: center;
+    }
+    .page-eyebrow { font-size: 10px; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; letter-spacing: 0.02em; margin-bottom: 16px; }
+    .page-title em { font-style: italic; color: var(--gold); }
+    .page-sub { font-size: 13px; color: var(--text-muted); line-height: 2; max-width: 520px; margin: 0 auto 32px; }
+    .hero-cta {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: var(--text);
+      color: #fff;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .hero-cta:hover { opacity: 0.8; }
+
+    /* SECTIONS */
+    section { border-bottom: 0.5px solid var(--border); }
+    .container { max-width: 1000px; margin: 0 auto; padding: 72px 48px; }
+    .sec-no { font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.02em; margin-bottom: 8px; }
+    .sec-title em { font-style: italic; color: var(--gold); }
+    .sec-sub { font-size: 13px; color: var(--text-muted); line-height: 1.9; max-width: 520px; margin-top: 12px; }
+
+    /* STEP */
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 48px;
+      position: relative;
+    }
+    .step-item {
+      padding: 0 24px 0 0;
+      position: relative;
+    }
+    .step-item:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: 4px;
+      top: 20px;
+      color: var(--gold);
+      font-size: 16px;
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step-title { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .step-body { font-size: 12px; color: var(--text-muted); line-height: 1.9; }
+    .step-badge {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      border: 0.5px solid var(--gold);
+      color: var(--gold);
+      padding: 3px 10px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    /* PREVIEW */
+    .preview-wrap {
+      margin-top: 48px;
+      border: 0.5px solid var(--border);
+      padding: 32px;
+      background: var(--bg-soft);
+    }
+    .preview-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .preview-card {
+      background: #fff;
+      border: 0.5px solid var(--border);
+      padding: 24px;
+      position: relative;
+    }
+    .preview-card.featured {
+      border-color: var(--gold);
+    }
+    .preview-card-badge {
+      position: absolute;
+      top: -1px; right: -1px;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      background: var(--gold);
+      color: #fff;
+      padding: 4px 12px;
+      text-transform: uppercase;
+    }
+    .preview-studio-name { font-size: 16px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .preview-area { font-size: 11px; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 12px; }
+    .preview-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .preview-tag {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      border: 0.5px solid var(--border-mid);
+      padding: 3px 10px;
+      color: var(--text-muted);
+    }
+    .preview-divider { border: none; border-top: 0.5px solid var(--border); margin: 16px 0; }
+    .preview-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .preview-key { font-size: 11px; color: var(--text-faint); letter-spacing: 0.06em; }
+    .preview-val { font-size: 12px; color: var(--text-muted); }
+    .preview-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-faint);
+      margin-top: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    /* PRICING */
+    .pricing-box {
+      border: 0.5px solid var(--border);
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .pricing-left {
+      padding: 40px;
+      border-right: 0.5px solid var(--border);
+    }
+    .pricing-right {
+      padding: 40px;
+      background: var(--bg-soft);
+    }
+    .pricing-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      margin: 16px 0 4px;
+    }
+    .pricing-unit { font-size: 12px; color: var(--text-muted); margin-bottom: 24px; }
+    .pricing-includes { list-style: none; }
+    .pricing-includes li {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 2.2;
+      padding-left: 16px;
+      position: relative;
+    }
+    .pricing-includes li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+    .pricing-right-title { font-size: 13px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 16px; }
+    .pricing-note-list { list-style: none; }
+    .pricing-note-list li {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 2.2;
+      padding-left: 16px;
+      position: relative;
+    }
+    .pricing-note-list li::before { content: '·'; position: absolute; left: 4px; color: var(--gold); }
+
+    /* FAQ */
+    .faq-list { margin-top: 40px; }
+    .faq-item {
+      border-top: 0.5px solid var(--border);
+      padding: 24px 0;
+      cursor: pointer;
+    }
+    .faq-item:last-child { border-bottom: 0.5px solid var(--border); }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-q-text { font-size: 14px; font-weight: 400; letter-spacing: 0.04em; }
+    .faq-icon { font-size: 18px; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+    .faq-a {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 2;
+      margin-top: 16px;
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    /* CTA */
+    .cta-section {
+      background: var(--text);
+      padding: 72px 48px;
+      text-align: center;
+    }
+    .cta-eyebrow { font-size: 10px; letter-spacing: 0.22em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 16px; }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #fff; letter-spacing: 0.03em; margin-bottom: 12px; }
+    .cta-title em { font-style: italic; color: var(--gold-light); }
+    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 2; margin-bottom: 40px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn-primary {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: var(--gold);
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .cta-btn-primary:hover { opacity: 0.85; }
+    .cta-btn-outline {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: transparent;
+      color: #fff;
+      border: 0.5px solid rgba(255,255,255,0.4);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .cta-btn-outline:hover { background: rgba(255,255,255,0.1); }
+    .cta-note { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 20px; line-height: 1.8; }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--text-faint); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .page-hero { padding: 48px 24px; }
+      .page-title { font-size: 30px; }
+      .container { padding: 48px 24px; }
+      .step-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .step-item::after { display: none; }
+      .preview-grid { grid-template-columns: 1fr; }
+      .pricing-box { grid-template-columns: 1fr; }
+      .pricing-left { border-right: none; border-bottom: 0.5px solid var(--border); }
+      footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="pilates-bridge.html" class="logo">Pilates <em>Bridge</em></a>
+    <a href="pilates-bridge.html" class="nav-back">← トップページへ戻る</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-eyebrow">For Studio</div>
+    <h1 class="page-title">スタジオ<em>掲載プラン</em></h1>
+    <p class="page-sub">ピラティス専門プラットフォームで、求めるインストラクターへ直接アプローチ。月額定額で何度でもコンタクト可能です。</p>
+    <a href="#flow" class="hero-cta">掲載の流れを見る</a>
+  </div>
+
+  <!-- STEP -->
+  <section id="flow">
+    <div class="container">
+      <div class="sec-no">01 — Flow</div>
+      <div class="sec-title">掲載までの<em>流れ</em></div>
+      <p class="sec-sub">お申し込みから掲載開始まで、最短3営業日で対応します。</p>
+      <div class="step-grid">
+        <div class="step-item">
+          <div class="step-badge">Step 1</div>
+          <div class="step-num">1</div>
+          <div class="step-title">情報のご登録</div>
+          <p class="step-body">Notionフォームからスタジオ情報・求人条件を入力。5〜10分で完了します。</p>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">Step 2</div>
+          <div class="step-num">2</div>
+          <div class="step-title">審査・掲載承認</div>
+          <p class="step-body">運営側で内容を確認後、掲載承認のご連絡をメールでお送りします（最短翌営業日）。</p>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">Step 3</div>
+          <div class="step-num">3</div>
+          <div class="step-title">お支払い</div>
+          <p class="step-body">承認メールに記載のStripeリンクから月額¥11,000（税込）をお支払いください。</p>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">Step 4</div>
+          <div class="step-num">4</div>
+          <div class="step-title">掲載スタート</div>
+          <p class="step-body">お支払い確認後、掲載を開始します。インストラクターへ直接コンタクトできます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATCHING FLOW -->
+  <section id="matching">
+    <div class="container">
+      <div class="sec-no">02 — Matching Flow</div>
+      <div class="sec-title">マッチングの<em>仕組み</em></div>
+      <p class="sec-sub">スタジオとインストラクターの条件をもとに、運営がマッチングをご提案。マッチング通知メールに双方の連絡先を記載してお送りします。</p>
+
+      <div style="margin-top: 48px; display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap;">
+
+        <!-- Studio -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 140px;">
+          <div style="width: 72px; height: 72px; border: 0.5px solid var(--border-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-soft);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="14" width="24" height="14" rx="1" stroke="#B89A7A" stroke-width="1"/>
+              <path d="M2 14L16 4L30 14" stroke="#B89A7A" stroke-width="1"/>
+              <rect x="12" y="20" width="8" height="8" stroke="#B89A7A" stroke-width="1"/>
+            </svg>
+          </div>
+          <div style="font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-align: center;">スタジオ</div>
+          <div style="font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.7;">求人条件を<br>登録</div>
+        </div>
+
+        <!-- Arrow 1 -->
+        <div style="display: flex; flex-direction: column; align-items: center; padding: 0 8px; padding-bottom: 32px;">
+          <svg width="40" height="16" viewBox="0 0 40 16" fill="none"><path d="M0 8H36M36 8L28 2M36 8L28 14" stroke="#B89A7A" stroke-width="0.8"/></svg>
+        </div>
+
+        <!-- Pilates Bridge -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 140px;">
+          <div style="width: 72px; height: 72px; border: 0.5px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-soft);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="10" stroke="#B89A7A" stroke-width="1"/>
+              <path d="M10 16C10 16 12 10 16 10C20 10 22 16 22 16" stroke="#B89A7A" stroke-width="1"/>
+              <path d="M10 16C10 16 12 22 16 22C20 22 22 16 22 16" stroke="#B89A7A" stroke-width="1"/>
+              <line x1="16" y1="6" x2="16" y2="26" stroke="#B89A7A" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <div style="font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-align: center; color: var(--gold);">Pilates Bridge</div>
+          <div style="font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.7;">条件を確認して<br>マッチング提案<br>メールでお知らせ</div>
+        </div>
+
+        <!-- Arrow 2 -->
+        <div style="display: flex; flex-direction: column; align-items: center; padding: 0 8px; padding-bottom: 32px;">
+          <svg width="40" height="16" viewBox="0 0 40 16" fill="none"><path d="M0 8H36M36 8L28 2M36 8L28 14" stroke="#B89A7A" stroke-width="0.8"/></svg>
+        </div>
+
+        <!-- Instructor -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 140px;">
+          <div style="width: 72px; height: 72px; border: 0.5px solid var(--border-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-soft);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="10" r="5" stroke="#B89A7A" stroke-width="1"/>
+              <path d="M6 28C6 22.477 10.477 18 16 18C21.523 18 26 22.477 26 28" stroke="#B89A7A" stroke-width="1"/>
+            </svg>
+          </div>
+          <div style="font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-align: center;">インストラクター</div>
+          <div style="font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.7;">プロフィールを<br>登録</div>
+        </div>
+
+        <!-- Arrow 3 -->
+        <div style="display: flex; flex-direction: column; align-items: center; padding: 0 8px; padding-bottom: 32px;">
+          <svg width="40" height="16" viewBox="0 0 40 16" fill="none"><path d="M0 8H36M36 8L28 2M36 8L28 14" stroke="#B89A7A" stroke-width="0.8"/></svg>
+        </div>
+
+        <!-- Contact -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; width: 140px;">
+          <div style="width: 72px; height: 72px; border: 0.5px solid var(--border-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-soft);">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="24" height="16" rx="1" stroke="#B89A7A" stroke-width="1"/>
+              <path d="M4 10L16 18L28 10" stroke="#B89A7A" stroke-width="1"/>
+            </svg>
+          </div>
+          <div style="font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-align: center;">直接コンタクト</div>
+          <div style="font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.7;">マッチング通知に<br>連絡先を記載<br>採用へ</div>
+        </div>
+
+      </div>
+
+      <p style="text-align: center; font-size: 11px; color: var(--text-faint); 

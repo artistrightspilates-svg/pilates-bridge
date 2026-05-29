@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>インストラクター登録 | Pilates Bridge</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B89A7A;
+      --gold-light: #E8D5BC;
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --text-faint: #aaaaaa;
+      --border: rgba(0,0,0,0.12);
+      --border-mid: rgba(0,0,0,0.2);
+      --bg: #ffffff;
+      --bg-soft: #f8f6f3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      border-bottom: 0.5px solid var(--border);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+    }
+    .logo { font-size: 13px; letter-spacing: 0.18em; font-weight: 400; text-transform: uppercase; text-decoration: none; color: var(--text); }
+    .logo em { font-style: italic; color: var(--gold); }
+    .nav-back { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .page-hero {
+      background: var(--bg-soft);
+      border-bottom: 0.5px solid var(--border);
+      padding: 64px 48px;
+      text-align: center;
+    }
+    .page-eyebrow { font-size: 10px; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; letter-spacing: 0.02em; margin-bottom: 16px; }
+    .page-title em { font-style: italic; color: var(--gold); }
+    .page-sub { font-size: 13px; color: var(--text-muted); line-height: 2; max-width: 520px; margin: 0 auto 32px; }
+    .hero-cta {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: var(--text);
+      color: #fff;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .hero-cta:hover { opacity: 0.8; }
+
+    /* SECTIONS */
+    section { border-bottom: 0.5px solid var(--border); }
+    .container { max-width: 1000px; margin: 0 auto; padding: 72px 48px; }
+    .sec-no { font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.02em; margin-bottom: 8px; }
+    .sec-title em { font-style: italic; color: var(--gold); }
+    .sec-sub { font-size: 13px; color: var(--text-muted); line-height: 1.9; max-width: 520px; margin-top: 12px; }
+
+    /* STEP */
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 48px;
+      position: relative;
+    }
+    .step-item {
+      padding: 0 24px 0 0;
+      position: relative;
+    }
+    .step-item:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: 4px;
+      top: 20px;
+      color: var(--gold);
+      font-size: 16px;
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step-title { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .step-body { font-size: 12px; color: var(--text-muted); line-height: 1.9; }
+    .step-badge {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      border: 0.5px solid var(--gold);
+      color: var(--gold);
+      padding: 3px 10px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    /* FREE BADGE */
+    .free-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      background: var(--gold);
+      color: #fff;
+      padding: 4px 14px;
+      margin-top: 24px;
+      text-transform: uppercase;
+    }
+
+    /* PREVIEW */
+    .preview-wrap {
+      margin-top: 48px;
+      border: 0.5px solid var(--border);
+      padding: 32px;
+      background: var(--bg-soft);
+    }
+    .preview-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .preview-card {
+      background: #fff;
+      border: 0.5px solid var(--border);
+      padding: 24px;
+      position: relative;
+    }
+    .preview-card.featured {
+      border-color: var(--gold);
+    }
+    .preview-card-badge {
+      position: absolute;
+      top: -1px; right: -1px;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      background: var(--gold);
+      color: #fff;
+      padding: 4px 12px;
+      text-transform: uppercase;
+    }
+    .preview-name { font-size: 16px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .preview-area { font-size: 11px; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 12px; }
+    .preview-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .preview-tag {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      border: 0.5px solid var(--border-mid);
+      padding: 3px 10px;
+      color: var(--text-muted);
+    }
+    .preview-divider { border: none; border-top: 0.5px solid var(--border); margin: 16px 0; }
+    .preview-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .preview-key { font-size: 11px; color: var(--text-faint); letter-spacing: 0.06em; }
+    .preview-val { font-size: 12px; color: var(--text-muted); }
+    .preview-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-faint);
+      margin-top: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    /* BENEFITS */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .benefit-item {
+      border: 0.5px solid var(--border);
+      padding: 28px 24px;
+    }
+    .benefit-icon {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    .benefit-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .benefit-body {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    /* FAQ */
+    .faq-list { margin-top: 40px; }
+    .faq-item {
+      border-top: 0.5px solid var(--border);
+      padding: 24px 0;
+      cursor: pointer;
+    }
+    .faq-item:last-child { border-bottom: 0.5px solid var(--border); }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-q-text { font-size: 14px; font-weight: 400; letter-spacing: 0.04em; }
+    .faq-icon { font-size: 18px; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+    .faq-a {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 2;
+      margin-top: 16px;
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    /* CTA */
+    .cta-section {
+      background: var(--text);
+      padding: 72px 48px;
+      text-align: center;
+    }
+    .cta-eyebrow { font-size: 10px; letter-spacing: 0.22em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 16px; }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #fff; letter-spacing: 0.03em; margin-bottom: 12px; }
+    .cta-title em { font-style: italic; color: var(--gold-light); }
+    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 2; margin-bottom: 40px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn-primary {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: var(--gold);
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .cta-btn-primary:hover { opacity: 0.85; }
+    .cta-btn-outline {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: transparent;
+      color: #fff;
+      border: 0.5px solid rgba(255,255,255,0.4);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .cta-btn-outline:hover { background: rgba(255,255,255,0.1); }
+    .cta-note { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 20px; line-height: 1.8; }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--text-faint); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .page-hero { padding: 48px 24px; }
+      .page-title { font-size: 30px; }
+      .container { padding: 48px 24px; }
+      .step-grid { grid-template-columns: 1fr; gap: 32px; }
+      .step-item::after { display: none; }
+      .preview-grid { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="pilates-bridge.html" class="logo">Pilates <em>Bridge</em></a>
+    <a href="pilates-bridge.html" class="nav-back">← トップページへ戻る</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-eyebrow">For Instructor</div>
+    <h1 class="page-title">インストラクター<em>登録</em></h1>
+    <p class="page-sub">あなたのスキルと経験を活かせるスタジオと出会える、ピラティス専門のマッチングプラットフォーム。登録は無料です。</p>
+    <a href="#flow" class="hero-cta">登録の流れを見る</a>
+  </div>
+
+  <!-- STEP -->
+  <section id="flow">
+    <div class="container">
+      <div class="sec-no">01 — Flow</div>
+      <div class="sec-title">登録までの<em>流れ</em></div>
+      <p class="sec-sub">フォーム入力から掲載開始まで、最短3営業日で対応します。</p>
+      <div class="step-grid">
+        <div class="step-item">
+          <div class="step-badge">Step 1</div>
+          <div class="step-num">1</div>
+          <div class="step-title">情報のご登録</div>
+          <p class="step-body">Notionフォームからプロフィール・資格・希望条件を入力。5〜10分で完了します。</p>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">Step 2</div>
+          <div class="step-num">2</div>
+          <div class="step-title">審査・掲載承認</div>
+          <p class="step-body">運営側でプロフィール内容を確認後、掲載承認のご連絡をメールでお送りします（最短3営業日）。</p>
+        </div>
+        <div class="step-item">
+          <div class="step-badge">Step 3</div>
+          <div class="step-num">3</div>
+          <div class="step-title">掲載スタート</div>
+          <p class="step-body">承認後、プロフィールを掲載。条件の合うスタジオが見つかり次第、運営からマッチング通知メールをお送りします。メールにスタジオの連絡先が記載されますので、そのままコンタクトいただけます。</p>
+        </div>
+      </div>
+      <div style="margin-top: 32px;">
+        <span class="free-badge">インストラクター登録は無料</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="container">
+      <div class="sec-no">02 — Benefits</div>
+      <div class="sec-title">登録の<em>メリット</em></div>
+      <p class="sec-sub">Pilates Bridgeに登録することで、こんなメリットがあります。</p>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-title">ピラティス専門の出会い</div>
+          <p class="benefit-body">ピラティスに特化したプラットフォームなので、本気でインストラクターを探しているスタジオと繋がれます。</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">💬</div>
+          <div class="benefit-title">スタジオから直接コンタクト</div>
+          <p class="benefit-body">自分からアプローチしなくても、掲載しておくだけでスタジオ側からお声がけが届きます。</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✨</div>
+          <div class="benefit-title">完全無料で利用できる</div>
+          <p class="benefit-body">インストラクターの登録・掲載は無料です。採用成立後の成功報酬も現在はいただいておりません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="sec-no">03 — FAQ</div>
+      <div class="sec-title">よくある<em>ご質問</em></div>
+      <div class="faq-list">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span class="faq-q-text">登録は本当に無料ですか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">はい、インストラクターの登録・掲載は完全無料です。採用成立後の成功報酬も現在はいただいておりません。将来的に有料職業紹介許可取得後にモデルが変わる可能性がありますが、その際は事前にご案内します。</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span class="faq-q-text">審査では何を確認しますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">保有資格・経験年数・プロフィールの記載内容を確認します。資格証明書の提出は現在は必須としていませんが、スタジオからご要望があった際にご提示いただく場合があります。</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span class="faq-q-text">プロフィールの内容は後から変更できますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">はい、掲載中はいつでも変更できます。変更希望の場合はメールでご連絡ください。通常1〜2営業日以内に対応します。</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span class="faq-q-text">掲載を停止・退会したい場合は？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">いつでも掲載停止・退会が可能です。メールにてお申し出ください。登録情報の削除も対応します。</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span class="faq-q-text">資格取得中でも登録できますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a">資格取得見込みの方も登録可能です。プロフィールに「取得予定」と記載することで、受け入れ可能なスタジオとマッチングできる場合があります。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-eyebrow">Get Started</div>
+    <div class="cta-title">まずは、<em>プロフィールのご登録から。</em></div>
+    <p class="cta-sub">フォームにご記入いただいた後、審査・承認のご連絡をメールでお送りします。<br>登録は無料。ご不明な点はお気軽にご相談ください。</p>
+    <div class="cta-btns">
+      <a href="https://app.notion.com/p/36d8be4036b0801a8b34d614f2f86bd0?v=36d8be4036b08090bbed000cc3faa6eb" target="_blank" class="cta-btn-primary">プロフィールを登録する（無料）</a>
+      <a href="pilates-bridge.html#contact" class="cta-btn-outline">まず相談する</a>
+    </div>
+    <p class="cta-note">※ 審査完了後、掲載承認メールをお送りします。<br>※ 登録情報はマッチング目的のみに使用します。第三者への提供は一切ありません。</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Pilates Bridge. All rights reserved.</span>
+    <span>
+      <a href="#">Instagram</a> &nbsp;·&nbsp;
+      <a href="pilates-bridge.html#contact">お問い合わせ</a> &nbsp;·&nbsp;
+      <a href="privacy.html">プライバシーポリシー</a>
+    </span>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      el.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>

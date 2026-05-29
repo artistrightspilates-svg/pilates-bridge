@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilates Bridge | ピラティスインストラクター × スタジオ マッチング & 研修</title>
+  <meta name="description" content="インストラクターとスタジオの橋渡しを通じて、ピラティス業界全体の底上げを目指す専門プラットフォーム。マッチングと実践研修の2本柱で、業界の可能性を広げます。">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B89A7A;
+      --gold-light: #E8D5BC;
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --text-faint: #aaaaaa;
+      --border: rgba(0,0,0,0.12);
+      --border-mid: rgba(0,0,0,0.2);
+      --bg: #ffffff;
+      --bg-soft: #f8f6f3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      border-bottom: 0.5px solid var(--border);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+    }
+    .logo {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo em { font-style: italic; color: var(--gold); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-btn {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      border: 0.5px solid var(--border-mid);
+      padding: 8px 20px;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .nav-btn:hover { background: var(--text); color: #fff; }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 560px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-left {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 0.5px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-weight: 300;
+      line-height: 1.35;
+      letter-spacing: 0.01em;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-meta p {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      line-height: 2;
+    }
+    .hero-btns { display: flex; gap: 12px; margin-top: 20px; }
+    .btn-primary {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 12px 28px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+    .btn-outline {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 12px 28px;
+      background: transparent;
+      color: var(--text);
+      border: 0.5px solid var(--border-mid);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--text); color: #fff; }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88);
+    }
+
+    /* ===== MARQUEE ===== */
+    .marquee-wrap {
+      border-bottom: 0.5px solid var(--border);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: scroll 24s linear infinite;
+    }
+    .marquee-inner span {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-right: 48px;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===== SECTIONS ===== */
+    section { border-bottom: 0.5px solid var(--border); }
+    .container { max-width: 1080px; margin: 0 auto; padding: 72px 48px; }
+    .sec-no {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+    .sec-title em { font-style: italic; color: var(--gold); }
+    .sec-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 520px;
+      margin-top: 12px;
+    }
+
+    /* ===== SERVICE PHOTOS ===== */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .photo-card { position: relative; overflow: hidden; }
+    .photo-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: transform 0.5s ease;
+    }
+    .photo-card:hover img { transform: scale(1.03); }
+    .photo-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+    }
+    .photo-label-title { font-size: 15px; font-weight: 400; color: #fff; letter-spacing: 0.08em; }
+    .photo-label-sub { font-size: 11px; color: rgba(255,255,255,0.75); letter-spacing: 0.1em; margin-top: 3px; }
+
+    /* ===== SERVICE LIST ===== */
+    .svc-list { margin-top: 40px; }
+    .svc-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 200px;
+      gap: 0;
+      border-top: 0.5px solid var(--border);
+      padding: 28px 0;
+      align-items: start;
+    }
+    .svc-row:last-child { border-bottom: 0.5px solid var(--border); }
+    .svc-no { font-size: 10px; letter-spacing: 0.12em; color: var(--text-faint); padding-top: 2px; }
+    .svc-name { font-size: 15px; font-weight: 400; letter-spacing: 0.07em; margin-bottom: 10px; }
+    .svc-body { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+    .svc-tags { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+    .svc-tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      border: 0.5px solid var(--border-mid);
+      padding: 4px 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ===== IMAGE BREAK ===== */
+    .img-break {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: brightness(0.65);
+    }
+    .img-break-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+      padding: 0 24px;
+    }
+    .img-break-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+    }
+    .img-break-text em { font-style: italic; color: var(--gold-light); }
+
+    /* ===== FLOW ===== */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 40px;
+    }
+    .flow-item {
+      padding-right: 32px;
+      border-right: 0.5px solid var(--border);
+    }
+    .flow-item:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+    .flow-item:nth-child(2) { padding: 0 32px; }
+    .flow-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 20px;
+      filter: brightness(0.88);
+    }
+    .flow-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 300;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .flow-title { font-size: 13px; font-weight: 500; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .flow-body { font-size: 12px; color: var(--text-muted); line-height: 1.9; }
+
+    /* ===== PRICING ===== */
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 0.5px solid var(--border);
+      margin-top: 40px;
+    }
+    .price-card {
+      padding: 36px 32px;
+      border-right: 0.5px solid var(--border);
+    }
+    .price-card:last-child { border-right: none; }
+    .price-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 24px;
+      filter: brightness(0.88);
+    }
+    .price-for {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .price-name { font-size: 14px; font-weight: 400; letter-spacing: 0.06em; margin-bottom: 20px; }
+    .price-amt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .price-unit { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+    .price-items {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 2.4;
+      border-top: 0.5px solid var(--border);
+      padding-top: 16px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .about-img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: brightness(0.85);
+      border-right: 0.5px solid var(--border);
+    }
+    .about-text {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 2;
+      font-style: italic;
+      color: var(--text-muted);
+      margin: 20px 0 28px;
+    }
+    .about-name {
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+    }
+    .about-role {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .about-body { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+    }
+    .cta-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.5);
+    }
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px;
+    }
+    .cta-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+    .cta-title em { font-style: italic; color: var(--gold-light); }
+    .cta-sub { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 32px; line-height: 1.9; }
+    .cta-btn {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      border: 0.5px solid rgba(255,255,255,0.7);
+      padding: 14px 40px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .cta-btn:hover { background: #fff; color: var(--text); }
+
+    /* ===== CONTACT FORM ===== */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+    .form-full { grid-column: 1 / -1; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 0.5px solid var(--border-mid);
+      padding: 12px 14px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.75; }
+    .form-note { font-size: 11px; color: var(--text-faint); margin-top: 12px; line-height: 1.8; }
+
+    /* ===== NEWS ===== */
+    .news-bar {
+      border-bottom: 0.5px solid var(--border);
+      background: var(--bg-soft);
+    }
+    .news-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .news-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 16px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .news-header-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .news-header-count {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+    }
+    .news-list { padding: 4px 0 8px; }
+    .news-item {
+      display: grid;
+      grid-template-columns: 100px 80px 1fr;
+      align-items: baseline;
+      gap: 0 20px;
+      padding: 14px 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-date {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+    }
+    .news-badge {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 0.5px solid var(--border-mid);
+      padding: 3px 10px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      justify-self: start;
+    }
+    .news-badge.new {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .news-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .news-inner { padding: 0 24px; }
+      .news-item { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--text-faint); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { display: none; }
+      .hero { grid-template-columns: 1fr; height: auto; }
+      .hero-left { padding: 40px 24px; border-right: none; border-bottom: 0.5px solid var(--border); }
+      .hero-title { font-size: 32px; }
+      .hero img { height: 280px; }
+      .container { padding: 48px 24px; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .svc-row { grid-template-columns: 60px 1fr; }
+      .svc-tags { display: none; }
+      .flow-grid { grid-template-columns: 1fr; }
+      .flow-item { border-right: none; border-bottom: 0.5px solid var(--border); padding: 0 0 28px 0 !important; margin-bottom: 28px; }
+      .flow-item:last-child { border-bottom: none; }
+      .price-grid { grid-template-columns: 1fr; }
+      .price-card { border-right: none; border-bottom: 0.5px solid var(--border); }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-img { height: 280px; border-right: none; border-bottom: 0.5px solid var(--border); }
+      .about-text { padding: 36px 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+      footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">Pilates <em>Bridge</em></a>
+    <div class="nav-links">
+      <a href="#news">News</a>
+      <a href="#service">Service</a>
+      <a href="#flow">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#training">Training</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-btn">Contact</a>
+    </div>
+  </nav>
+
+  <!-- NEWS -->
+  <div class="news-bar" id="news">
+    <div class="news-inner">
+      <div class="news-header">
+        <span class="news-header-label">Updates &amp; News</span>
+        <span class="news-header-count">最新のお知らせ</span>
+      </div>
+      <div class="news-list">
+
+        <!-- ▼ お知らせはここに追加していきます（新しいものを上に） -->
+
+        <div class="news-item">
+          <span class="news-date">2026.05.28</span>
+          <span class="news-badge new">New</span>
+          <span class="news-text">Pilates Bridge ランディングページを公開しました。</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div>
+        <div class="hero-eyebrow">Pilates Bridge — 2026</div>
+        <h1 class="hero-title">インストラクターと<br>スタジオを、<br><em>もっとなめらかに。</em></h1>
+      </div>
+      <div class="hero-meta">
+        <p>Matching × Training<br>スタジオとインストラクターの橋渡しで、<br>ピラティス業界の底上げを目指す</p>
+        <div class="hero-btns">
+          <a href="studio-plan.html" class="btn-primary">スタジオの方へ</a>
+          <a href="instructor-plan.html" class="btn-outline">インストラクターの方へ</a>
+        </div>
+      </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80&fit=crop" alt="ピラティスのレッスン風景">
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-inner">
+      <span>Pilates Bridge</span><span>Matching Service</span><span>Instructor Training</span><span>Online & Nationwide</span>
+      <span>Pilates Bridge</span><span>Matching Service</span><span>Instructor Training</span><span>Online & Nationwide</span>
+      <span>Pilates Bridge</span><span>Matching Service</span><span>Instructor Training</span><span>Online & Nationwide</span>
+      <span>Pilates Bridge</span><span>Matching Service</span><span>Instructor Training</span><span>Online & Nationwide</span>
+    </div>
+  </div>
+
+  <!-- SERVICE -->
+  <section id="service">
+    <div class="container">
+      <div class="sec-no">01 — Service</div>
+      <div class="sec-title">2つの<em>サービス</em></div>
+      <p class="sec-sub">マッチングと研修が連動し、インストラクターとスタジオ双方を継続的にサポートします。</p>
+      <div class="photo-grid">
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80&fit=crop" alt="マッチングサービス">
+          <div class="photo-label">
+            <div class="photo-label-title">Matching Service</div>
+            <div class="photo-label-sub">スタジオ × インストラクター</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=800&q=80&fit=crop" alt="インストラクター研修">
+          <div class="photo-label">
+            <div class="photo-label-title">Instructor Training</div>
+            <div class="photo-label-sub">資格取得後の実践研修</div>
+          </div>
+        </div>
+      </div>
+      <div class="svc-list">
+        <div class="svc-row">
+          <div class="svc-no">01</div>
+          <div>
+            <div class="svc-name">Matching Service</div>
+            <p class="svc-body">フリーランスインストラクターと求人スタジオを専門プラットフォームでつなぐサービス。スタジオは月額掲載料で求人を掲載し、インストラクターへ直接コンタクトできます。インストラクターは無料でプロフィールを登録できます。</p>
+          </div>
+          <div class="svc-tags">
+            <span class="svc-tag">スタジオ月額掲載</span>
+            <span class="svc-tag">全国対応</span>
+            <span class="svc-tag">インスト無料登録</span>
+          </div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-no">02</div>
+          <div>
+            <div class="svc-name">Instructor Training</div>
+            <p class="svc-body">資格取得後に必要な実践スキルをZOOMと動画で指導。基礎固め・指導法・クライアント対応まで、現場で即戦力になれるよう丁寧にサポートします。スタジオ向けの団体研修にも対応しています。</p>
+          </div>
+          <div class="svc-tags">
+            <span class="svc-tag">ZOOM少人数</span>
+            <span class="svc-tag">動画アーカイブ</span>
+            <span class="svc-tag">団体研修対応</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE BREAK -->
+  <div class="img-break">
+    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&fit=crop" alt="ピラティスの現場">
+    <div class="img-break-text">
+      <p>"資格を取った後の<br><em>一番大変な時期に、</em><br>寄り添えるサービスを。"</p>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section id="flow">
+    <div class="container">
+      <div class="sec-no">02 — How it works</div>
+      <div class="sec-title">ご利用の<em>流れ</em></div>
+      <div class="flow-grid">
+        <div class="flow-item">
+          <img class="flow-img" src="https://images.unsplash.com/photo-1562088287-bde35a1ea917?w=600&q=80&fit=crop" alt="登録">
+          <div class="flow-num">1</div>
+          <div class="flow-title">登録・申し込み</div>
+          <p class="flow-body">スタジオは掲載申し込み、インストラクターは無料でプロフィール登録。フォームから数分で完了します。登録後、運営より確認メールをお送りします。</p>
+        </div>
+        <div class="flow-item">
+          <img class="flow-img" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=80&fit=crop" alt="研修">
+          <div class="flow-num">2</div>
+          <div class="flow-title">一覧の閲覧・マッチング提案</div>
+          <p class="flow-body">登録完了後、運営よりスタジオ・インストラクター一覧のURLをメールでお送りします。ご希望の条件を確認のうえ、運営からマッチングのご提案をいたします。（インストラクターの個人情報はスタジオ側には開示しません）</p>
+        </div>
+        <div class="flow-item">
+          <img class="flow-img" src="https://images.unsplash.com/photo-1518310952931-b1de897abd40?w=600&q=80&fit=crop" alt="現場">
+          <div class="flow-num">3</div>
+          <div class="flow-title">コンタクト・採用・現場へ</div>
+          <p class="flow-body">マッチング提案後、双方の同意のもとで連絡先をお伝えします。採用・契約はスタジオとインストラクターの直接合意で進めます。研修で自信をつけて、すぐ現場で活躍できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="sec-no">03 — Pricing</div>
+      <div class="sec-title">料金<em>プラン</em></div>
+      <p class="sec-sub">明確でシンプルな料金体系。まずはお気軽にお問い合わせください。</p>
+      <div class="price-grid">
+        <div class="price-card">
+          <img class="price-img" src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80&fit=crop" alt="スタジオ向け">
+          <div class="price-for">For Studio</div>
+          <div class="price-name">掲載プラン</div>
+          <div class="price-amt">¥10,000</div>
+          <div class="price-unit">/ 月（税抜）／ 税込¥11,000</div>
+          <div class="price-items">
+            求人情報の掲載<br>
+            インストラクターへの直接連絡<br>
+            掲載内容の随時更新<br>
+            専門分野・条件での絞り込み
+          </div>
+        </div>
+        <div class="price-card">
+          <img class="price-img" src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&q=80&fit=crop" alt="インストラクター向け">
+          <div class="price-for">For Instructor</div>
+          <div class="price-name">研修プログラム（3ヶ月）</div>
+          <div class="price-amt">¥50,000</div>
+          <div class="price-unit">一括 / または ¥17,000 × 3回分割</div>
+          <div class="price-items">
+            月2回ZOOM × 3ヶ月（全6回）<br>
+            少人数制（3〜5名）<br>
+            受講生同士の実践・フィードバック<br>
+            グループLINEサポート付き<br>
+            最低3名で開講
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAINING DETAIL -->
+  <section id="training">
+    <div class="container">
+      <div class="sec-no">04 — Instructor Training</div>
+      <div class="sec-title">研修プログラムの<em>詳細</em></div>
+      <p class="sec-sub">資格を取ったあと、「自分のレッスンが合っているか分からない」「何が分からないか分からない」という不安を持つ方へ。少人数で、仲間と一緒に、3ヶ月かけて自走できる状態を目指します。</p>
+      <div class="svc-list">
+        <div class="svc-row">
+          <div class="svc-no">01</div>
+          <div>
+            <div class="svc-name">少人数グループ制（3〜5名）</div>
+            <p class="svc-body">同じ時期に資格を取った仲間と一緒に進むコホート形式。励まし合い、刺激し合える同期の存在が、学び続ける力になります。</p>
+          </div>
+          <div class="svc-tags">
+            <span class="svc-tag">最低3名で開講</span>
+          </div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-no">02</div>
+          <div>
+            <div class="svc-name">月2回ZOOM × 3ヶ月（全6回）</div>
+            <p class="svc-body">毎回「近況シェア → 実践 → フィードバック」の流れで進行。受講生同士がクライアント役になり、実際のレッスンを行います。ベテランインストラクターが丁寧にフィードバックします。</p>
+          </div>
+          <div class="svc-tags">
+            <span class="svc-tag">各回2時間</span>
+            <span class="svc-tag">ZOOM開催</span>
+          </div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-no">03</div>
+          <div>
+            <div class="svc-name">6回のカリキュラム</div>
+            <p class="svc-body">①自分のレッスンを客観的に見る → ②お客様の反応を読む → ③自分の「型」を見つける → ④うまくいかない時の対処法 → ⑤自分の強みを活かす → ⑥これからの学び方を自分で設計する</p>
+          </div>
+          <div class="svc-tags">
+            <span class="svc-tag">資格の種類不問</span>
+          </div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-no">04</div>
+          <div>
+            <div class="svc-name">グループLINEサポート</div>
+            <p class="svc-body">3ヶ月間、日常的な疑問や「今日こんなことがあった」という報告をグループLINEで共有できます。ZOOM以外でも仲間とつながれる場です。</p>
+          </div>
+          <div class="svc-tags">
+            <span class="svc-tag">3ヶ月間サポート</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="training.html" class="btn-primary">研修プログラムの詳細・申し込みへ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <img class="about-img" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80&fit=crop" alt="インストラクター">
+      <div class="about-text">
+        <div class="sec-no">05 — About</div>
+        <div class="sec-title"><em>想い</em></div>
+        <p class="about-quote">"スタジオとインストラクターが<br>きちんとつながれる業界に、<br>していきたい。"</p>
+        <div class="about-role">Pilates Bridge</div>
+        <p class="about-body">インストラクターが活躍できる場を増やし、スタジオが求める人材と出会える仕組みをつくる。その橋渡しを通じて、ピラティス業界全体の底上げに貢献したいという想いからこのサービスを立ち上げました。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&q=80&fit=crop" alt="ピラティス">
+    <div class="cta-overlay">
+      <div class="cta-label">Get Started</div>
+      <div class="cta-title">まずは、<em>お気軽に。</em></div>
+      <p class="cta-sub">スタジオの掲載・研修のモニター参加<br>どちらもお問い合わせから受け付けています</p>
+      <a href="#contact" class="cta-btn">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="sec-no">06 — Contact</div>
+      <div class="sec-title">お問い合わせ</div>
+      <p class="sec-sub">スタジオの掲載申し込み・インストラクターの登録・研修のご相談など、お気軽にどうぞ。</p>
+      <form class="form-grid" action="https://formspree.io/f/mojbrvwq" method="POST">
+        <div class="form-group">
+          <label>お名前 *</label>
+          <input type="text" name="name" required placeholder="山田 花子">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス *</label>
+          <input type="email" name="email" required placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ種別 *</label>
+          <select name="type" required>
+            <option value="">選択してください</option>
+            <option value="studio">スタジオ掲載について</option>
+            <option value="instructor">インストラクター登録について</option>
+            <option value="training">研修・モニターについて</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>お電話番号（任意）</label>
+          <input type="tel" name="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group form-full">
+          <label>メッセージ *</label>
+          <textarea name="message" required placeholder="ご質問・ご相談内容をご記入ください"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="【Pilates Bridge】お問い合わせが届きました">
+        <input type="hidden" name="_language" value="ja">
+        <div class="form-full">
+          <button type="submit" class="form-submit">送信する</button>
+          <p class="form-note">※ ご返信は通常3営業日以内にお送りします。<br>※ 送信いただいた個人情報はお問い合わせへの回答にのみ使用します。</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Pilates Bridge. All rights reserved.</span>
+    <span>
+      <a href="#">Instagram</a> &nbsp;·&nbsp;
+      <a href="#contact">お問い合わせ</a> &nbsp;·&nbsp;
+      <a href="privacy.html">プライバシーポリシー</a> &nbsp;·&nbsp;
+      <a href="terms.html">利用規約</a> &nbsp;·&nbsp;
+      <a href="disclaimer.html">免責事項</a> &nbsp;·&nbsp;
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    </span>
+  </footer>
+
+  <script>
+    // ナビのアクティブ状態
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 80) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? '#1a1a1a' : '';
+      });
+    });
+  </script>
+
+</body>
+</html>

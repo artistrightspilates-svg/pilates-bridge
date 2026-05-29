@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>研修プログラム | Pilates Bridge</title>
+  <meta name="description" content="資格取得直後のインストラクター向け実践研修。少人数・ZOOM・3ヶ月で自走できる状態を目指します。">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #B89A7A;
+      --gold-light: #E8D5BC;
+      --text: #1a1a1a;
+      --text-muted: #6b6b6b;
+      --text-faint: #aaaaaa;
+      --border: rgba(0,0,0,0.12);
+      --border-mid: rgba(0,0,0,0.2);
+      --bg: #ffffff;
+      --bg-soft: #f8f6f3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      border-bottom: 0.5px solid var(--border);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+    }
+    .logo {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo em { font-style: italic; color: var(--gold); }
+    .nav-back {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      padding: 80px 48px 64px;
+      border-bottom: 0.5px solid var(--border);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      font-weight: 300;
+      line-height: 1.35;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 2;
+      max-width: 560px;
+    }
+
+    /* SECTIONS */
+    section { border-bottom: 0.5px solid var(--border); }
+    .container { max-width: 1080px; margin: 0 auto; padding: 72px 48px; }
+    .sec-no {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+    .sec-title em { font-style: italic; color: var(--gold); }
+    .sec-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 520px;
+      margin-top: 12px;
+    }
+
+    /* FEATURES */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 40px;
+      border: 0.5px solid var(--border);
+    }
+    .feature-card {
+      padding: 36px 32px;
+      border-right: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .feature-card:nth-child(2n) { border-right: none; }
+    .feature-card:nth-last-child(-n+2) { border-bottom: none; }
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .feature-title { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .feature-body { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+
+    /* CURRICULUM */
+    .curriculum-list { margin-top: 40px; }
+    .curriculum-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+      border-top: 0.5px solid var(--border);
+      padding: 24px 0;
+      align-items: start;
+    }
+    .curriculum-row:last-child { border-bottom: 0.5px solid var(--border); }
+    .curriculum-no { font-size: 10px; letter-spacing: 0.12em; color: var(--text-faint); padding-top: 2px; }
+    .curriculum-title { font-size: 14px; font-weight: 400; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .curriculum-body { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+
+    /* FLOW */
+    .flow-list { margin-top: 40px; }
+    .flow-row {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 0 24px;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .flow-row:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: -1px;
+      width: 0.5px;
+      background: var(--border-mid);
+    }
+    .flow-circle {
+      width: 40px;
+      height: 40px;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      background: var(--bg);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-content {
+      padding: 8px 0 40px;
+    }
+    .flow-row:last-child .flow-content { padding-bottom: 0; }
+    .flow-label { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .flow-desc { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+    .flow-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      border: 0.5px solid var(--gold);
+      color: var(--gold);
+      padding: 3px 10px;
+      margin-top: 8px;
+    }
+
+    /* FAQ */
+    .faq-list { margin-top: 40px; }
+    .faq-item {
+      border-top: 0.5px solid var(--border);
+      padding: 24px 0;
+    }
+    .faq-item:last-child { border-bottom: 0.5px solid var(--border); }
+    .faq-q {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+    }
+    .faq-q::before {
+      content: 'Q';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .faq-a {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      padding-left: 34px;
+    }
+
+    /* FORM */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+    .form-full { grid-column: 1 / -1; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 0.5px solid var(--border-mid);
+      padding: 12px 14px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 14px 40px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.75; }
+    .form-note { font-size: 11px; color: var(--text-faint); margin-top: 12px; line-height: 1.8; }
+
+    /* PRICE SUMMARY */
+    .price-box {
+      border: 0.5px solid var(--border);
+      padding: 40px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .price-option-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .price-amt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: 4px;
+    }
+    .price-unit { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+    .price-note { font-size: 12px; color: var(--text-faint); line-height: 1.9; }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--text-faint); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 48px 24px 40px; }
+      .hero-title { font-size: 32px; }
+      .container { padding: 48px 24px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-card { border-right: none !important; }
+      .feature-card:nth-last-child(-n+2) { border-bottom: 0.5px solid var(--border) !important; }
+      .feature-card:last-child { border-bottom: none !important; }
+      .price-box { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+      footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="pilates-bridge.html" class="logo">Pilates <em>Bridge</em></a>
+    <a href="pilates-bridge.html" class="nav-back">← トップに戻る</a>
+  </nav>
+
+  <!-- HERO -->
+  <div style="border-bottom: 0.5px solid var(--border);">
+    <div class="hero" style="border-bottom: none;">
+      <div class="hero-eyebrow">Instructor Training Program</div>
+      <h1 class="hero-title">資格取得後の<br><em>不安を、自信に。</em></h1>
+      <p class="hero-sub">「自分のレッスンが合っているか分からない」「何が分からないか分からない」——そんな新人インストラクターのための、少人数・3ヶ月の実践研修プログラムです。</p>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="container">
+      <div class="sec-no">01 — Program Features</div>
+      <div class="sec-title">プログラムの<em>特徴</em></div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-num">01</div>
+          <div class="feature-title">少人数コホート制（3〜5名）</div>
+          <p class="feature-body">同じ時期に資格を取った仲間と一緒に3ヶ月を歩みます。励まし合い、刺激し合える「同期」の存在が、学び続ける力になります。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">02</div>
+          <div class="feature-title">実践フィードバック形式</div>
+          <p class="feature-body">受講生同士がクライアント役になり、実際のレッスンを行います。ベテランインストラクターが毎回丁寧にフィードバック。「自分のレッスン」を客観的に見る力が身につきます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">03</div>
+          <div class="feature-title">月2回ZOOM × 3ヶ月（全6回）</div>
+          <p class="feature-body">各回2時間。近況シェア → 実践 → フィードバックの流れで進行します。現場で試して、次のZOOMで報告・改善するサイクルで確実に成長できます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">04</div>
+          <div class="feature-title">資格の種類・流派は問わない</div>
+          <p class="feature-body">マットピラティス・マシンピラティスどちらの資格でも参加可能。マシンの内容もセラバンド等を使ってマットに応用しながら学べます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRICULUM -->
+  <section>
+    <div class="container">
+      <div class="sec-no">02 — Curriculum</div>
+      <div class="sec-title">6回の<em>カリキュラム</em></div>
+      <p class="sec-sub">「自信がついて、お客様から良いフィードバックをもらい始め、あとは自力で試行錯誤できる状態」を3ヶ月のゴールに設定しています。</p>
+      <div class="curriculum-list">
+        <div class="curriculum-row">
+          <div class="curriculum-no">第1回</div>
+          <div>
+            <div class="curriculum-title">自分のレッスンを客観的に見る</div>
+            <p class="curriculum-body">初回実践と講師からのフィードバック。「今の自分」の現在地を把握します。</p>
+          </div>
+        </div>
+        <div class="curriculum-row">
+          <div class="curriculum-no">第2回</div>
+          <div>
+            <div class="curriculum-title">お客様の反応を読む</div>
+            <p class="curriculum-body">クライアントの表情・動き・言葉から何を読み取るか。対応力を養います。</p>
+          </div>
+        </div>
+        <div class="curriculum-row">
+          <div class="curriculum-no">第3回</div>
+          <div>
+            <div class="curriculum-title">自分の「型」を見つける</div>
+            <p class="curriculum-body">他の受講生との違いを知り、自分らしい指導スタイルの輪郭を掴みます。</p>
+          </div>
+        </div>
+        <div class="curriculum-row">
+          <div class="curriculum-no">第4回</div>
+          <div>
+            <div class="curriculum-title">うまくいかない時の対処法</div>
+            <p class="curriculum-body">レッスンが思い通りにいかない場面での立て直し方を実践的に学びます。</p>
+          </div>
+        </div>
+        <div class="curriculum-row">
+          <div class="curriculum-no">第5回</div>
+          <div>
+            <div class="curriculum-title">自分の強みを活かす</div>
+            <p class="curriculum-body">3ヶ月で見えてきた強みを意識的に使い、レッスンに組み込みます。</p>
+          </div>
+        </div>
+        <div class="curriculum-row">
+          <div class="curriculum-no">第6回</div>
+          <div>
+            <div class="curriculum-title">これからの学び方を自分で設計する</div>
+            <p class="curriculum-body">コース終了後も学び続けるための「自分なりの成長サイクル」を言語化して卒業します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section>
+    <div class="container">
+      <div class="sec-no">03 — How to Apply</div>
+      <div class="sec-title">申し込みから研修スタートまでの<em>流れ</em></div>
+      <div class="flow-list" style="margin-top: 40px;">
+        <div class="flow-row">
+          <div class="flow-circle">1</div>
+          <div class="flow-content">
+            <div class="flow-label">申し込みフォームを送信</div>
+            <p class="flow-desc">このページ下部のフォームに必要事項を入力して送信してください。資格の種類・希望する支払い方法もお知らせください。</p>
+          </div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-circle">2</div>
+          <div class="flow-content">
+            <div class="flow-label">運営から確認メールをお送りします</div>
+            <p class="flow-desc">3営業日以内に、開講スケジュールや詳細をメールでご案内します。ご不明な点はこの時点でご相談ください。</p>
+            <span class="flow-badge">3営業日以内に返信</span>
+          </div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-circle">3</div>
+          <div class="flow-content">
+            <div class="flow-label">決済リンクをお送りします</div>
+            <p class="flow-desc">ご確認いただけましたら、一括払い・分割払いいずれかの決済リンクをメールでお送りします。お支払い完了をもって申し込み確定となります。</p>
+          </div>
+        </div>
+        <div class="flow-row">
+          <div class="flow-circle">4</div>
+          <div class="flow-content">
+            <div class="flow-label">グループLINEに招待 → 研修スタート</div>
+            <p class="flow-desc">お支払い完了後、グループLINEにご招待します。同期メンバーが3名揃い次第、第1回ZOOMの日程を調整して研修スタートです。</p>
+            <span class="flow-badge">3名揃い次第スタート</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section>
+    <div class="container">
+      <div class="sec-no">04 — Pricing</div>
+      <div class="sec-title">料金<em>プラン</em></div>
+      <p class="sec-sub">一括払いと3回分割払いからお選びいただけます。いずれも返金不可となりますのでご了承ください。</p>
+      <div class="price-box">
+        <div>
+          <div class="price-option-label">Option A — 一括払い</div>
+          <div class="price-amt">¥50,000</div>
+          <div class="price-unit">3ヶ月分 一括</div>
+          <p class="price-note">お申し込み確定後、決済リンクをメールでお送りします。</p>
+        </div>
+        <div>
+          <div class="price-option-label">Option B — 分割払い</div>
+          <div class="price-amt">¥17,000 × 3回</div>
+          <div class="price-unit">月1回 × 3ヶ月</div>
+          <p class="price-note">初回お支払い日から毎月自動引き落とし。3回完了でコース終了となります。</p>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: var(--text-faint); margin-top: 16px; line-height: 1.9;">※ 返金不可となります。ご不明な点はお申し込み前にお気軽にお問い合わせください。<br>※ 最低3名が揃わない場合、開講が遅れることがあります。その際はご連絡します。</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <div class="sec-no">05 — FAQ</div>
+      <div class="sec-title">よくある<em>ご質問</em></div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">資格の種類は問いますか？</div>
+          <p class="faq-a">問いません。マットピラティス・マシンピラティスどちらの資格でも参加いただけます。マシンをお持ちでない方も、セラバンド等を使ったマットへの応用方法をお伝えします。</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">ZOOMの日程はどうやって決まりますか？</div>
+          <p class="faq-a">お申し込み後、同期メンバー全員の都合を確認したうえで日程を調整します。平日夜・週末など、できる限り参加しやすい日程を設定します。</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">分割払いの引き落とし日はいつですか？</div>
+          <p class="faq-a">初回のお支払い日を基準に、毎月同日に自動引き落としとなります。（例：6月10日初回 → 7月10日・8月10日）</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">途中でやめることはできますか？</div>
+          <p class="faq-a">ご事情による途中退会は可能ですが、ご返金はいたしかねます。分割払いの場合も残額のお支払いが必要となります。ご了承のうえお申し込みください。</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">コース終了後はどうなりますか？</div>
+          <p class="faq-a">コース終了後、受講生同士で自由に連絡を取り合っていただくことは歓迎しています。運営（りよ）が直接関わる場は3ヶ月で終了となりますが、マッチングサービスへの登録も引き続きご利用いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY FORM -->
+  <section id="apply">
+    <div class="container">
+      <div class="sec-no">06 — Apply</div>
+      <div class="sec-title">申し込み<em>フォーム</em></div>
+      <p class="sec-sub">フォームを送信後、3営業日以内に確認メールをお送りします。ご不明な点はメッセージ欄にご記入ください。</p>
+      <form class="form-grid" action="https://formspree.io/f/mojbrvwq" method="POST">
+        <div class="form-group">
+          <label>お名前 *</label>
+          <input type="text" name="name" required placeholder="山田 花子">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス *</label>
+          <input type="email" name="email" required placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>保有資格 *</label>
+          <input type="text" name="qualification" required placeholder="例：STOTT マットピラティス Level 1">
+        </div>
+        <div class="form-group">
+          <label>資格取得時期 *</label>
+          <input type="text" name="qualification_date" required placeholder="例：2026年3月">
+        </div>
+        <div class="form-group">
+          <label>希望する支払い方法 *</label>
+          <select name="payment" required>
+            <option value="">選択してください</option>
+            <option value="lump">一括払い（¥50,000）</option>
+            <option value="installment">分割払い（¥17,000 × 3回）</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ZOOMに参加しやすい曜日・時間帯</label>
+          <input type="text" name="schedule" placeholder="例：平日夜・土日午前">
+        </div>
+        <div class="form-group form-full">
+          <label>ご質問・ご相談など</label>
+          <textarea name="message" placeholder="資格取得後の状況や、研修への期待などお気軽にご記入ください"></textarea>
+        </div>
+        <div class="form-group form-full">
+          <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+            <input type="checkbox" name="agree" required style="margin-top: 3px; flex-shrink: 0;">
+            <span style="font-size: 12px; color: var(--text-muted); line-height: 1.8;"><a href="terms.html" target="_blank" style="color: var(--gold);">利用規約</a>および<a href="privacy.html" target="_blank" style="color: var(--gold);">プライバシーポリシー</a>に同意します *</span>
+          </label>
+        </div>
+        <input type="hidden" name="_subject" value="【Pilates Bridge】研修プログラム申し込み">
+        <input type="hidden" name="_language" value="ja">
+        <div class="form-full">
+          <button type="submit" class="form-submit">申し込みを送信する</button>
+          <p class="form-note">※ 送信後、3営業日以内に確認メールをお送りします。<br>※ 送信いただいた個人情報はお問い合わせへの回答・研修運営にのみ使用します。<br>※ お申し込みは開講確定ではありません。確認メールをもってご案内します。</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Pilates Bridge</span>
+    <div style="display: flex; gap: 24px;">
+      <a href="pilates-bridge.html">Top</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+</body>
+</html>
